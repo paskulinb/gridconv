@@ -1,0 +1,3 @@
+- input rage opciji [NoDATA] in [default]
+- možnost navedbe več datotek za obdelavo pod isto transformacijo
+- možnost tudi drugi slikovnih tipov (jpg, ...) in zapis argumenta za 'world file' z "png+w", "jpg+w" ...

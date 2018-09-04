@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./gridconv grid_src/pohorje png+pgw '[50,1000]:rgb(200,0,0,60)|[,]:(0,0,0,127)'
+#./gridconv grid_src/pohorje int8 '[50,1000]:[0,1]'
+#./gridconv grid_src/moja_njiva int8 '[0,]:"CV*2"|[-9999]:[255]'
+#./gridconv grid_src/moja_njiva float32 '[,]:"CV"'
+./gridconv grid_src/moja_njiva png '[-200,0]:(150,100,50)|[0,100]:(255,0,0)|[100,1000]:(0,255,0)|[-9999]:(255,255,255,127)'
+#./gridconv grid_src/pohorje int8 '[,50]:[0]|[50,]:"round(CV-50)"'
+#./gridconv grid_src/pohorje int16 '[0,100]:[1000,2000]|[100,1000]:"roud(CV/4)"|[1000,]:"CV/7"'
