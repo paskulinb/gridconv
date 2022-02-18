@@ -14,12 +14,9 @@ public:
 	static const int BYTEORDER_MSBFIRST;
 	
 private:
-	FILE* fp;
-	std::string in_file;
-	int in_filetype;
-public:
-	std::string in_file_dir;
-	std::string in_file_basename;
+	//std::string in_file_dir;
+	//std::string in_file_basename;
+	//std::string in_file_ext;
 private:
 	std::string last_error;
 	
@@ -73,13 +70,13 @@ public:
 	 * 
 	 *  @return 1: OK <br>0: ERROR
 	 */
-	int readAsciiGrid();
+	int readAsciiGrid(std::string path);
 	
 	/** ESRI FLOAT grid file format parsing procedure.
 	 * 
 	 *  @return 1: OK <br>0: ERROR
 	 */
-	int readFloatGrid();
+	int readFloatGrid(std::string path);
 
 private:
 	/** Grid header parsing procedure.
@@ -89,7 +86,7 @@ private:
 	 *  @param buff pointer to string, containing the header of the raster data.
 	 *  @return Returns the pointer to start of cells data in ASCII grid file. At Folat grid fileformat this is not needed.
 	 */
-	char* readHeader(char* buff);
+	char* parseHeader(char* buff);
 public:
 	/** Swaps 4 bytes.
 	 *  Needed for compatibility between differen micropricessor architectures (MSB/LSB).

@@ -51,7 +51,7 @@ Options:\n\
 // Range example 2: <input/output> "[100,]"    -> min_val=100, max_val=DBL_MAX (maximum value of type double)
 // Range example 3: <input/output> "[,200]"    -> min_val=DBL_MIN (minimum value of type double), max_val=200
 // Single value example: <input/output> "[55]" -> min_val=max_val=55
-// Math expression example: <output> "(CV/10)+5" -> every input value will be insert in place of CV; the result will be output value
+// Math expression example: <output> "(CV/10)+5" -> every input value will be inserted in place of CV; the result will be output value
 // 1. Split string to particular rule strings
 // 2. Resolve praticular rule string to 'rule' struct
 // 3. Create new TransformationValueToValue instance and return the pointer to it
@@ -59,12 +59,12 @@ Map* GridConverter::parseMapString(string map_str)
 {
 	char* trans = new char [map_str.length()+1];
 	strcpy (trans, map_str.c_str());
-	char* trans_save = NULL; //for strtok_r() need
 //cout << "map_str:" << trans << endl;
 	
 	Map* map = new Map;
 	
 	//First rule:
+	char* trans_save = NULL; //for strtok_r() need
 	char* rule = strtok_r(trans, "|", &trans_save);
 
 	while (rule != NULL)
@@ -77,7 +77,8 @@ Map* GridConverter::parseMapString(string map_str)
 		// INPUT RANGE
 		// examples: [9] or [2,9] or [12,] or [,43]
 		Range in = parseRangeString(rule_input);
-		
+//rule = strtok_r(NULL, "|", &trans_save); continue;		
+
 		// OUTPUT RANGE/MATH_EXPRESSION/COLOR_RANGE
 		// Is output defined as a rage ('[') or a math expression ('\"') or a color-range ('(')?
 		char* brk = strpbrk(rule_output, "[\"(");
@@ -210,7 +211,7 @@ ColorRange GridConverter::parseColorRangeString(string color_range_str)
 	return color_range;
 }
 
-int GridConverter::createPngFile(Grid& grid, Map& map)
+int GridConverter::createPngFile(Grid& grid, Map& map, std::string out_filepath)
 {
 
 	gdImagePtr im = gdImageCreate(grid.ncols, grid.nrows); //color pallete image
@@ -231,7 +232,7 @@ int GridConverter::createPngFile(Grid& grid, Map& map)
 	}
 
 	FILE* fh_png;
-	if (!(fh_png = fopen((grid.in_file_dir + "/" + grid.in_file_basename + ".png").c_str(), "w"))) {
+	if (!(fh_png = fopen(out_filepath.c_str(), "w"))) {
 		cout << "GridConverter::createPngFile: Error creating .png file" << endl;
 		return 0;
 	}
@@ -244,10 +245,10 @@ int GridConverter::createPngFile(Grid& grid, Map& map)
 }
 
 
-int GridConverter::createWorldFile(Grid& grid, string file_extension)
+int GridConverter::createWorldFile(Grid& grid, string out_filepath)
 {
 	FILE* fh_wf;
-	if (!(fh_wf = fopen((grid.in_file_dir + "/" + grid.in_file_basename + "." + file_extension).c_str(), "w"))) {
+	if (!(fh_wf = fopen(out_filepath.c_str(), "w"))) {
 		cout << "GridConverter::createWorldFile: Error creating world file" << endl;
 		fclose (fh_wf);
 		return 0;

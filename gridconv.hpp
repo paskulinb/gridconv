@@ -2,7 +2,7 @@
 #define GRIDCONV_HPP
 
 template<typename T>
-int GridConverter::createBinFile(Grid& grid, Map& map, string file_extension)
+int GridConverter::createBinFile(Grid& grid, Map& map, std::string out_filepath)
 {
 	int ncells = grid.nrows * grid.ncols;
 	
@@ -15,7 +15,7 @@ int GridConverter::createBinFile(Grid& grid, Map& map, string file_extension)
 	}
 
 	FILE* fh;
-	if (!(fh = fopen((grid.in_file_dir + "/" + grid.in_file_basename + "." + file_extension).c_str(), "w"))) {
+	if (!(fh = fopen(out_filepath.c_str(), "w"))) {
 		cout << "GridConverter::createBinFile: Error creating file" << endl;
 		fclose (fh);
 		return 0;

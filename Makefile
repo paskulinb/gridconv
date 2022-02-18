@@ -1,9 +1,10 @@
 CC=g++
-CFLAGS=-Wall -I. -I/usr/include -std=gnu++0x
+#CFLAGS=-Wall -I. -I/usr/include -std=gnu++0x
+CFLAGS=-Wall -I. -I/usr/include -std=c++17
 DEPS=gridconv.h gridconv.hpp
 OBJ=main.o grid.o gridconv.o map.o
-LDDIRS=-L /usr/lib/i386-linux-gnu/
-LDLIBS=-lgd
+LDDIRS=-L /usr/lib/x86_64-linux-gnu/
+LDLIBS=-lstdc++fs -lgd
 
 default: gridconv
 

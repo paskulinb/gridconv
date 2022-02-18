@@ -43,7 +43,7 @@ public:
 	 *	- 0 on error
 	 *  @see createWorldFile()
 	 */
-	int createPngFile(Grid& grid, Map& map);
+	int createPngFile(Grid& grid, Map& map, std::string out_filepath);
 
 	/** Creates a world file belonging to image file.
 	 *  @param [in] grid Reference to Grid instance
@@ -53,7 +53,7 @@ public:
 	 *	- 0 on error
 	 *  @see createPngFile()
 	 */
-	int createWorldFile(Grid& grid, string file_extension);
+	int createWorldFile(Grid& grid, std::string out_filepath);
 
 	/** Get textual description of last error.
 	 *  @return description of the last error.

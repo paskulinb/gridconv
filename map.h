@@ -15,7 +15,6 @@ typedef exprtk::parser<double> parser_t;
 /** Class representing a range of two values. */
 class Range {
 public:
-	/** Constructor */
 	Range(double val1 = DBL_MIN, double val2 = DBL_MAX);
 	double val1;
 	double val2;
